@@ -106,7 +106,7 @@ tmux_connect() {
   fi
 }
 
-### =======KEYBINDINGS======= ###
+### =======KEYBINDS======= ###
 
 bindkey -M menuselect "h" vi-backward-char
 bindkey -M menuselect "j" vi-down-line-or-history
@@ -117,6 +117,8 @@ bindkey "^j" autosuggest-accept
 
 bindkey "^p" history-search-backward
 bindkey "^n" history-search-forward
+
+bindkey -s "^h" "~/"
 
 bindkey "^[[1~" beginning-of-line
 bindkey "^[[4~" end-of-line
