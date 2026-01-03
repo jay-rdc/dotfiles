@@ -312,7 +312,7 @@ window-rule {
 }
 
 window-rule {
-  match app-id="vesktop"
+  match app-id="^vesktop$"
   open-floating true
   open-on-output "DP-2"
   default-column-width { proportion 1.0; }
@@ -321,7 +321,7 @@ window-rule {
 }
 
 window-rule {
-  match app-id="spotify"
+  match app-id="^spotify$"
   open-floating true
   open-on-output "DP-2"
   default-column-width { proportion 1.0; }
