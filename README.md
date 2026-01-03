@@ -20,4 +20,4 @@ git sparse-checkout init --cone
 # set the config directories you want
 git sparse-checkout set niri quickshell
 ```
-then follow step 3 under [Usage](#Usage:)
+then follow step 3 under [Usage](#usage)
