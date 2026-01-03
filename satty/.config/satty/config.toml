@@ -1,0 +1,6 @@
+[general]
+copy-command = "wl-copy"
+primary-highlighter = "freehand"
+actions-on-escape = ["exit"]
+actions-on-enter = ["save-to-clipboard", "exit"]
+brush-smooth-history-size = 5
