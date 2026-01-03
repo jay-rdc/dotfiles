@@ -367,7 +367,8 @@ binds {
   // Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
   // Mod+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
-  Super+Return { spawn "foot"; }
+  Super+Return { spawn "foot" "--maximized"; }
+  Super+Shift+Return { spawn "foot" "--app-id=floater" "--override=colors.alpha=0.75"; }
   Super+Space { spawn "fuzzel" "--prompt=>  "; }
 
   Super+B { spawn "firefox"; }
