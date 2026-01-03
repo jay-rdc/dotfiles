@@ -16,7 +16,7 @@ return {
         },
         component_separators = "|",
         section_separators = { left = "", right = "" },
-        refresh = { statusline = 100 },
+        refresh = { statusline = 300 },
         disabled_filetypes = { statusline = { "alpha" } },
       },
       sections = {
