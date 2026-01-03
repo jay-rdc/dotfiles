@@ -7,7 +7,7 @@
 ## Usage:
 1. clone repo
 2. cd to project root directory
-3. run `stow ...` for each config (e.g. `stow nvim zsh tmux`)
+3. run `stow <config_directory> ...` for each config (e.g. `stow nvim zsh tmux`)
 
 ### Modular Download
 
