@@ -17,6 +17,11 @@ return {
       preview = { hide_on_startup = false },
     }
 
+    local grep_opts = {
+      preview = { hide_on_startup = false },
+      additional_args = { "--hidden" },
+    }
+
     telescope.setup({
       defaults = {
         layout_config = {
@@ -55,8 +60,10 @@ return {
       },
       pickers = {
         current_buffer_fuzzy_find = show_preview_on_startup,
-        live_grep = show_preview_on_startup,
         lsp_references = show_preview_on_startup,
+        live_grep = grep_opts,
+        grep_string = grep_opts,
+        find_files = { hidden = true },
       },
       extensions = {
         ["ui-select"] = {
@@ -65,6 +72,7 @@ return {
         live_grep_args = {
           auto_quoting = true,
           preview = { hide_on_startup = false },
+          additional_args = { "--hidden" },
           mappings = {
             i = {
               ["<C-k>"] = lga_actions.quote_prompt(),
@@ -78,6 +86,7 @@ return {
 
     vim.keymap.set("n", "<leader>fc", builtin.current_buffer_fuzzy_find, { desc = "Telescope: Find in current file" })
     vim.keymap.set("n", "<leader>fw", builtin.live_grep, { desc = "Telescope: Find word" })
+    vim.keymap.set("n", "<leader>fW", builtin.grep_string, { desc = "Telescope: Find word under cursor or selected word" })
     vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope: Find help tags" })
     vim.keymap.set("n", "<leader>fd", function()
       if not pcall(builtin.git_files, { show_untracked = true }) then
