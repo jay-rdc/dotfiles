@@ -15,7 +15,6 @@ If you want to download only specific configs, run these commands:
 ```bash
 git clone --no-checkout https://github.com/jay-rdc/dotfiles.git ~/dotfiles
 cd ~/dotfiles
-git sparse-checkout init --cone
 
 # set the config directories you want
 git sparse-checkout set niri quickshell
