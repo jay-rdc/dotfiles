@@ -402,13 +402,11 @@ binds {
   Super+Alt+Shift+K { move-column-to-monitor-up; }
   Super+Alt+Shift+L { move-column-to-monitor-right; }
 
-  Super+Shift+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
-  Super+Shift+WheelScrollUp cooldown-ms=150 { focus-workspace-up; }
+  Super+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
+  Super+WheelScrollUp cooldown-ms=150 { focus-workspace-up; }
 
-  Super+WheelScrollDown { focus-column-right; }
-  Super+WheelScrollUp { focus-column-left; }
-  Super+Ctrl+WheelScrollDown { move-column-right; }
-  Super+Ctrl+WheelScrollUp { move-column-left; }
+  Super+Shift+WheelScrollDown { focus-column-right; }
+  Super+Shift+WheelScrollUp { focus-column-left; }
 
   Super+Shift+S { spawn-sh "grim -t ppm -g \"$(slurp -d)\" - | satty -f - --initial-tool=rectangle"; }
   Super+S { screenshot-screen; }
