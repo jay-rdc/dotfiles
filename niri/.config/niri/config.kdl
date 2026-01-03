@@ -329,10 +329,16 @@ window-rule {
   default-floating-position x=0 y=350 relative-to="bottom-left"
 }
 
-// window-rule {
-//   match app-id="foot"
-//   default-column-width { proportion 1.0; }
-// }
+window-rule {
+  match app-id="^floater$"
+  open-floating true
+  default-column-width { fixed 900; }
+  default-window-height { fixed 600; }
+  default-floating-position x=0 y=200 relative-to="top"
+  shadow {
+    on
+  }
+}
 
 // Example: enable rounded corners for all windows.
 // (This example rule is commented out with a "/-" in front.)
