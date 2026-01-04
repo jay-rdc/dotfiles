@@ -22,8 +22,8 @@ Item {
       "sh", "-c", 
 
       // [0, 1] CPU and GPU temps
-      //                      CPU                                                   Dedicated GPU
-      "sensors | awk '/k10temp-pci-00c3/,/Tccd1/ {if ($1 == \"Tccd1:\") print $2} /amdgpu-pci-0300/,/edge/ {if ($1 == \"edge:\") print $2}' | tr -d '+'; " +
+      //                      CPU                                                                           Dedicated GPU
+      "sensors | awk '/k10temp-pci-00c3/,/Tccd1/ {if ($1 == \"Tccd1:\") {gsub(/+/, \"\", $2); print $2}} /amdgpu-pci-0300/,/edge/ {if ($1 == \"edge:\") {gsub(/+/, \"\", $2); print $2; exit}}'; " +
 
       // [2] CPU usage
       "top -bn 2 -d 0.01 | awk '/^%Cpu/ {i++} i==2 {printf \"%.0f%%\\n\", 100-$8; exit}'; " +
