@@ -26,7 +26,7 @@ Item {
       "sensors | awk '/k10temp-pci-00c3/,/Tccd1/ {if ($1 == \"Tccd1:\") print $2} /amdgpu-pci-0300/,/edge/ {if ($1 == \"edge:\") print $2}' | tr -d '+'; " +
 
       // [2] CPU usage
-      "top -bn1 | grep 'Cpu(s)' | awk '{print $2}'; " +
+      "top -bn 2 -d 0.01 | awk '/^%Cpu/ {i++} i==2 {printf \"%.0f%%\\n\", 100-$8; exit}'; " +
 
       // [3] GPU usage
       "cat /sys/class/drm/card1/device/gpu_busy_percent; " +
@@ -49,7 +49,7 @@ Item {
           root.cpuTemp = lines[0];
           root.gpuTemp = lines[1];
 
-          root.cpuUsage = (Math.ceil(parseFloat(lines[2].trim()))) + "%";
+          root.cpuUsage = lines[2];
           root.gpuUsage = lines[3].trim() + "%";
 
           const memParts = lines[4].split(" ");
