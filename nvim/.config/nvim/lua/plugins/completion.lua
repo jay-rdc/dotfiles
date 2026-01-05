@@ -48,7 +48,9 @@ return {
         end,
       },
       window = {
-        completion = cmp.config.window.bordered(),
+        completion = {
+          border = "rounded"
+        },
         documentation = {
           border = "rounded",
           max_height = 15,
