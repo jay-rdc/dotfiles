@@ -418,6 +418,9 @@ binds {
   Super+Shift+WheelScrollDown { focus-column-right; }
   Super+Shift+WheelScrollUp { focus-column-left; }
 
+  Super+Alt+WheelScrollUp cooldown-ms=150 { open-overview; }
+  Super+Alt+WheelScrollDown cooldown-ms=150 { close-overview; }
+
   Super+Shift+S { spawn-sh "grim -t ppm -g \"$(slurp -d)\" - | satty -f - --initial-tool=rectangle"; }
   Super+S { screenshot-screen; }
   Super+Alt+S { screenshot-window; }
