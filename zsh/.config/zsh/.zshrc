@@ -2,7 +2,7 @@
 
 HISTSIZE=10000
 SAVEHIST=10000
-[ ! -d "$XDG_CACHE_HOME/zsh" ] && mkdir -p "$XDG_CACHE_HOME/zsh"
+[[ ! -d "$XDG_CACHE_HOME/zsh" ]] && mkdir -p "$XDG_CACHE_HOME/zsh"
 HISTFILE="$XDG_CACHE_HOME/zsh/history.zsh"
 
 setopt SHARE_HISTORY
@@ -96,11 +96,11 @@ mdcd() { mkdir $1 && cd $1 }
 
 fp() {
   local project_dir=$(fd . $HOME/projects -td | fzf)
-  [ -n "$project_dir" ] && cd $project_dir
+  [[ -n "$project_dir" ]] && cd $project_dir
 }
 
 tmux_connect() {
-  if [ -z "$TMUX" ]; then
+  if [[ -z "$TMUX" ]]; then
     tmux has 2> /dev/null
     [ $? -eq 1 ] && tmux new || tmux attach 2> /dev/null
   fi
@@ -126,10 +126,10 @@ bindkey "^[[3~" delete-char
 
 ### =======MISC======= ###
 
-[ -d "$HOME/.local/bin" ] && path=("$HOME/.local/bin" $path)
+[[ -d "$HOME/.local/bin" ]] && path=("$HOME/.local/bin" $path)
 
 # Fast Node Manager (fnm)
-if [ -d "$FNM_PATH" ]; then
+if [[ -d "$FNM_PATH" ]]; then
   path=("$FNM_PATH" $path)
 
   # INFO: `(( $+commands[<cmd>] ))` returns true if the command exists
@@ -137,7 +137,7 @@ if [ -d "$FNM_PATH" ]; then
 fi
 
 # Rust (cargo binaries)
-[ -d "$HOME/.cargo/bin" ] && path=("$HOME/.cargo/bin" $path)
+[[ -d "$HOME/.cargo/bin" ]] && path=("$HOME/.cargo/bin" $path)
 
 # fzf zsh integration
 (( $+commands[fzf] )) && eval "$(fzf --zsh)"
@@ -151,8 +151,8 @@ __zsh_plugin() {
   local plugin_dir="$ZDOTDIR/plugins/$(basename $1)"
   local plugin_script="$plugin_dir/$(basename $1).zsh"
 
-  [ ! -d $plugin_dir ] && git clone https://github.com/$1.git $plugin_dir
-  [ -s $plugin_script ] && source $plugin_script
+  [[ ! -d $plugin_dir ]] && git clone https://github.com/$1.git $plugin_dir
+  [[ -s $plugin_script ]] && source $plugin_script
 }
 
 __zsh_plugin zsh-users/zsh-autosuggestions
