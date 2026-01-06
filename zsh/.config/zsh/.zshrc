@@ -35,7 +35,7 @@ setopt HIST_FIND_NO_DUPS
 
   local unstaged=""
   if [[ -n $(git --no-optional-locks diff --name-only --no-ext-diff 2> /dev/null | head -n 1) ]]; then
-    unstaged="%F{11}!%f"
+    unstaged="%F{11}~%f"
   fi
 
   local staged=""
