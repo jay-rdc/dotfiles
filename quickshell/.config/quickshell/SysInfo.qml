@@ -50,7 +50,7 @@ Item {
           root.gpuTemp = lines[1];
 
           root.cpuUsage = lines[2];
-          root.gpuUsage = lines[3].trim() + "%";
+          root.gpuUsage = lines[3] + "%";
 
           root.memFullString = `${lines[4]} GiB / ${lines[5]} GiB (${lines[6]}%)`;
         }
