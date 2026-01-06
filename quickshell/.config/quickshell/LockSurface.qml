@@ -2,6 +2,8 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls.Basic
 import Quickshell.Wayland
+import Quickshell.Widgets
+import Quickshell.Io
 
 Rectangle {
 	id: root
@@ -16,9 +18,14 @@ Rectangle {
 	// 	onClicked: context.unlocked();
 	// }
 
+  Process {
+    id: turnOffMonitors
+    command: [ "sh", "-c", "niri msg action power-off-monitors" ]
+  }
+
   Column {
     visible: Window.active
-    spacing: 50
+    spacing: 30
     topPadding: -300
     anchors.centerIn: parent
 
@@ -34,6 +41,38 @@ Rectangle {
       }
 
       Clock { anchors.horizontalCenter: parent.horizontalCenter }
+
+      WrapperItem {
+        anchors.horizontalCenter: parent.horizontalCenter
+        topMargin: 20
+
+        Button {
+          id: offMonitorBtn
+          text: "󰶐  Turn Off Monitors"
+          padding: 10
+          focusPolicy: Qt.NoFocus
+          enabled: !root.context.unlockInProgress
+          onClicked: turnOffMonitors.running = true;
+
+          contentItem: Text {
+            text: offMonitorBtn.text
+            font.family: Utils.defaultFont
+            font.pixelSize: 16
+            color: enabled ? "white" : "gray"
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+          }
+
+          background: Rectangle {
+            implicitWidth: 100
+            implicitHeight: 40
+            color: "black"
+            border.color: enabled ? "white" : "gray"
+            border.width: 1
+            radius: 4
+          }
+        }
+      }
     }
 
     ColumnLayout {
@@ -70,14 +109,16 @@ Rectangle {
 
         Button {
           id: unlockBtn
-          text: "Unlock"
+          text: " Unlock"
           padding: 10
 
           // don't steal focus from the text box
           focusPolicy: Qt.NoFocus
 
-          enabled: !root.context.unlockInProgress && root.context.currentText !== "";
           onClicked: root.context.tryUnlock();
+          enabled: {
+            !root.context.unlockInProgress && root.context.currentText !== "";
+          }
 
           contentItem: Text {
             text: unlockBtn.text
@@ -94,7 +135,7 @@ Rectangle {
             color: "black"
             border.color: enabled ? "white" : "gray"
             border.width: 1
-            radius: 2
+            radius: 4
           }
         }
       }
