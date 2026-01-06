@@ -262,7 +262,7 @@ layout {
 // spawn-at-startup "waybar"
 spawn-at-startup "qs"
 spawn-at-startup "steam" "-silent"
-spawn-at-startup "vesktop" "--start-minimized"
+spawn-at-startup "vesktop" "--start-minimized" "--ozone-platform=wayland" "--enable-blink-features=MiddleClickAutoscroll" "--ozone-platform-hint=auto"
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
