@@ -7,6 +7,7 @@ return {
           normal = {
             a = "StatusLineSectionA",
             b = "StatusLineSectionB",
+
             c = { bg = "none" },
           },
           inactive = {
@@ -22,7 +23,6 @@ return {
       sections = {
         lualine_a = {
           {
-            -- active buffer indicator
             function() return " " end,
             color = "StatusLineActiveIndicator",
             separator = { left = "", right = "" },
@@ -43,6 +43,10 @@ return {
           },
           {
             "filename",
+          },
+          {
+            "%n",
+            icon = "",
           },
           {
             "diff",
@@ -75,6 +79,10 @@ return {
           },
           {
             "filename",
+          },
+          {
+            "%n",
+            icon = "",
           },
           {
             "diff",
