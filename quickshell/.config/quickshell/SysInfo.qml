@@ -31,8 +31,8 @@ Item {
       // [3] GPU usage
       "cat /sys/class/drm/card1/device/gpu_busy_percent; " +
 
-      // [4] RAM usage (<used GiB>␣<total GiB>)
-      "free -m | awk '/Mem:/ {print $3 \" \" $2}'"
+      // [4, 5, 6] RAM usage (<used GiB>\n<total GiB>\n<usage percentage>)
+      "free -m | awk '/Mem:/ {printf \"%.2f\\n%.2f\\n%.0f%%\\n\", $3/1024, $2/1024, $3/$2 * 100}'"
     ]
 
     stdout: StdioCollector {
@@ -45,22 +45,14 @@ Item {
 
         const lines = output.split("\n");
 
-        if (lines.length >= 5) {
+        if (lines.length >= 7) {
           root.cpuTemp = lines[0];
           root.gpuTemp = lines[1];
 
           root.cpuUsage = lines[2];
           root.gpuUsage = lines[3].trim() + "%";
 
-          const memParts = lines[4].split(" ");
-          const usedMiB = parseFloat(memParts[0]);
-          const totalMiB = parseFloat(memParts[1]);
-
-          const usedGiB = (usedMiB / 1024).toFixed(2);
-          const totalGiB = (totalMiB / 1024).toFixed(2);
-          const memPct = ((usedMiB / totalMiB) * 100).toFixed(0);
-
-          root.memFullString = `${usedGiB} GiB / ${totalGiB} GiB (${memPct}%)`;
+          root.memFullString = `${lines[4]} GiB / ${lines[5]} GiB (${lines[6]}%)`;
         }
       }
     }
