@@ -24,7 +24,8 @@ vim.keymap.set("n", "<C-k>", "<cmd>cprev<CR>zz", { desc = "Go to previous quickf
 vim.keymap.set("n", "[b", vim.cmd.bprev, { desc = "Switch to previous buffer" })
 vim.keymap.set("n", "]b", vim.cmd.bnext, { desc = "Switch to next buffer" })
 
-vim.keymap.set("v", "<leader>gab", [[:g/^<\{7}\|^=\{7}\|^>\{7}/d<CR>]], { desc = "Git merge conflict: Accept both changes" })
+vim.keymap.set("v", "<leader>ga", ":diffget", { desc = "Diff: Wait for buffer input then accept" })
+vim.keymap.set("v", "<leader>gA", [[:g/^<\{7}\|^=\{7}\|^>\{7}/d<CR>]], { desc = "Git merge conflict: Accept both changes" })
 
 vim.keymap.set("n", "<leader>bd", "<cmd>%bd<CR><C-o><cmd>bd#<CR>", { desc = "Delete all buffers excluding the current buffer" })
 
