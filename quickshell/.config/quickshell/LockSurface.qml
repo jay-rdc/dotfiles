@@ -48,11 +48,7 @@ Rectangle {
           enabled: !root.context.unlockInProgress
           echoMode: TextInput.Password
           inputMethodHints: Qt.ImhSensitiveData
-
-          // Update the text in the context when the text in the box changes.
           onTextChanged: root.context.currentText = this.text;
-
-          // Try to unlock when enter is pressed.
           onAccepted: root.context.tryUnlock();
 
           background: Rectangle {
