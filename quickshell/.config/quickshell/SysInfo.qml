@@ -21,18 +21,20 @@ Item {
     command: [
       "sh", "-c", 
 
-      // [0, 1] CPU and GPU temps
-      //                      CPU                                                                           Dedicated GPU
-      "sensors | awk '/k10temp-pci-00c3/,/Tccd1/ {if ($1 == \"Tccd1:\") {gsub(/+/, \"\", $2); print $2}} /amdgpu-pci-0300/,/edge/ {if ($1 == \"edge:\") {gsub(/+/, \"\", $2); print $2; exit}}'; " +
+      // [0] CPU usage
+      "(grep '^cpu ' /proc/stat; sleep 0.1; grep '^cpu ' /proc/stat) | awk '{t=0; for(i=2;i<=NF;i++) t+=$i; id=$5+$6} NR==1{t1=t; id1=id} NR==2{dt=t-t1; did=id-id1; printf \"%.0f%%\\n\", 100*(dt-did)/dt}'; " +
 
-      // [2] CPU usage
-      "top -bn 2 -d 0.01 | awk '/^%Cpu/ {i++} i==2 {printf \"%.0f%%\\n\", 100-$8; exit}'; " +
+      // [1] CPU temp
+      "awk '{printf \"%.1f°C\\n\", $1/1000}' /sys/class/hwmon/hwmon4/temp3_input; " +
 
-      // [3] GPU usage
+      // [2] GPU usage
       "cat /sys/class/drm/card1/device/gpu_busy_percent; " +
 
+      // [3] GPU temp
+      "awk '{printf \"%.1f°C\\n\", $1/1000}' /sys/class/drm/card1/device/hwmon/hwmon*/temp1_input; " +
+
       // [4, 5, 6] RAM usage (<used GiB>\n<total GiB>\n<usage percentage>)
-      "free -m | awk '/Mem:/ {printf \"%.2f\\n%.2f\\n%.0f%%\\n\", $3/1024, $2/1024, $3/$2 * 100}'"
+      "awk '/MemTotal/ {total=$2} /MemAvailable/ {avail=$2} END {used=total-avail; printf \"%.2f\\n%.2f\\n%.0f%\\n\", used/1024/1024, total/1024/1024, used*100/total}' /proc/meminfo"
     ]
 
     stdout: StdioCollector {
@@ -46,11 +48,11 @@ Item {
         const lines = output.split("\n");
 
         if (lines.length >= 7) {
-          root.cpuTemp = lines[0];
-          root.gpuTemp = lines[1];
+          root.cpuUsage = lines[0];
+          root.cpuTemp = lines[1];
 
-          root.cpuUsage = lines[2];
-          root.gpuUsage = lines[3] + "%";
+          root.gpuUsage = lines[2] + "%";
+          root.gpuTemp = lines[3];
 
           root.memFullString = `${lines[4]} GiB / ${lines[5]} GiB (${lines[6]})`;
         }
