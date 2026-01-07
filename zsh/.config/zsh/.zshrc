@@ -63,7 +63,6 @@ zstyle ":vcs_info:git:*" actionformats "${vcs_formats} %F{cyan}(%f%F{red}%a%f%F{
 precmd() { vcs_info }
 
 setopt PROMPT_SUBST
-setopt TRANSIENT_RPROMPT
 PROMPT='%B%F{yellow} %1~%f${vcs_info_msg_0_} %F{10}%f%b '
 RPROMPT='%B%F{blue} %n%f @ %F{magenta} %M%f%b'
 
