@@ -393,6 +393,8 @@ binds {
 
   Super+Q repeat=false { close-window; }
 
+  Super+Z repeat=false { toggle-overview; }
+
   Super+H { focus-column-left; }
   Super+J { focus-window-or-workspace-down; }
   Super+K { focus-window-or-workspace-up; }
@@ -424,9 +426,6 @@ binds {
 
   Super+Shift+WheelScrollDown { focus-column-right; }
   Super+Shift+WheelScrollUp { focus-column-left; }
-
-  Super+Alt+WheelScrollUp cooldown-ms=150 { open-overview; }
-  Super+Alt+WheelScrollDown cooldown-ms=150 { close-overview; }
 
   Super+Shift+S { spawn-sh "grim -t ppm -g \"$(slurp -d)\" - | satty -f - --initial-tool=rectangle"; }
   Super+S { screenshot-screen; }
@@ -466,11 +465,6 @@ binds {
   // but you need to manually put each argument in separate "" quotes.
   XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+10%"; }
   XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "10%-"; }
-
-  // Open/close the Overview: a zoomed-out view of workspaces and windows.
-  // You can also move the mouse into the top-left hot corner,
-  // or do a four-finger swipe up on a touchpad.
-  Mod+O repeat=false { toggle-overview; }
 
   Mod+Left  { focus-column-left; }
   Mod+Down  { focus-window-down; }
