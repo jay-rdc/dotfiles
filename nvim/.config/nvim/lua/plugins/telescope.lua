@@ -86,7 +86,7 @@ return {
 
     vim.keymap.set("n", "<leader>fc", builtin.current_buffer_fuzzy_find, { desc = "Telescope: Find in current file" })
     vim.keymap.set("n", "<leader>fw", builtin.live_grep, { desc = "Telescope: Find word" })
-    vim.keymap.set("n", "<leader>fW", builtin.grep_string, { desc = "Telescope: Find word under cursor or selected word" })
+    vim.keymap.set({ "n", "v" }, "<leader>fW", builtin.grep_string, { desc = "Telescope: Find word under cursor or selected word" })
     vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope: Find help tags" })
     vim.keymap.set("n", "<leader>fd", function()
       if not pcall(builtin.git_files, { show_untracked = true }) then
