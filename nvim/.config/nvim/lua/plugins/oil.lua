@@ -33,16 +33,13 @@ return {
         get_win_title = function(winid)
           local raw_cwd = vim.fn.getcwd()
 
-          -- Normalize only on Windows
           local cwd = is_windows and normalize_windows_path(raw_cwd) or (raw_cwd .. "/")
           local cwd_escaped = vim.pesc(cwd)
 
-          -- Get file path
           local buf = vim.api.nvim_win_get_buf(winid)
           local file_path = vim.api.nvim_buf_get_name(buf):gsub("^oil://", "")
           local file_path_norm = is_windows and normalize_windows_path(file_path) or file_path
 
-          -- Perform replacement
           local relative_path = file_path_norm:gsub("^" .. cwd_escaped, "./")
 
           return " " .. relative_path .. " "

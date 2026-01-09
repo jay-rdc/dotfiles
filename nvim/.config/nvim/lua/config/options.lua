@@ -32,7 +32,6 @@ vim.opt.colorcolumn = "80"
 
 local has_wsl = vim.fn.has("wsl") == 1
 local has_tmux = vim.fn.has_key(vim.fn.environ(), "TMUX") == 1
--- Detect if OSC52 clipboard provider exists
 local has_osc52, osc52 = pcall(require, "vim.ui.clipboard.osc52")
 
 if not has_tmux then
