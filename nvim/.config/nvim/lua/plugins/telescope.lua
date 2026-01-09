@@ -19,7 +19,7 @@ return {
 
     local grep_opts = {
       preview = { hide_on_startup = false },
-      additional_args = { "--hidden" },
+      additional_args = { "--hidden" , "--glob", "!.git/" },
     }
 
     telescope.setup({
@@ -72,7 +72,7 @@ return {
         live_grep_args = {
           auto_quoting = true,
           preview = { hide_on_startup = false },
-          additional_args = { "--hidden" },
+          additional_args = { "--hidden" , "--glob", "!.git/" },
           mappings = {
             i = {
               ["<C-k>"] = lga_actions.quote_prompt(),
