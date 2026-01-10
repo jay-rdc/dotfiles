@@ -330,6 +330,15 @@ window-rule {
 }
 
 window-rule {
+  match app-id="^transmission-qt"
+  open-floating true
+  open-on-output "DP-2"
+  default-column-width { fixed 800; }
+  default-window-height { fixed 600; }
+  default-floating-position x=150 y=200 relative-to="left"
+}
+
+window-rule {
   match app-id="^floater$"
   open-floating true
   default-column-width { fixed 1000; }
