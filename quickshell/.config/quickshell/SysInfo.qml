@@ -157,9 +157,9 @@ Item {
     }
 
     Text {
-      text: "Clips: " + (root.isClipRecording ? "ON" : "OFF")
+      text: `Clips: ${root.isClipRecording ? "ON" : "OFF"}`
       anchors.horizontalCenter: parent.horizontalCenter
-      color: (root.isClipRecording ? "#8ae234" : "#ef2929")
+      color: root.isClipRecording ? "#8ae234" : "#ef2929"
       font.family: Utils.defaultFont
       font.pixelSize: 20
       font.bold: true
