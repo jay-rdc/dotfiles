@@ -51,6 +51,7 @@ return {
         "html",
         "jsonls",
         "lua_ls",
+        "stylua",
         "ts_ls",
       },
     })
