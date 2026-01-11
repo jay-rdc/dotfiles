@@ -50,8 +50,10 @@ return {
         ["<C-v>"] = { "actions.select", opts = { vertical = true }, mode = "n" },
         ["<C-s>"] = { "actions.select", opts = { horizontal = true }, mode = "n" },
         ["<A-p>"] = { "actions.preview", mode = "n" },
+        ["<A-h>"] = { "actions.preview_scroll_left", mode = "n" },
         ["<A-j>"] = { "actions.preview_scroll_down", mode = "n" },
         ["<A-k>"] = { "actions.preview_scroll_up", mode = "n" },
+        ["<A-l>"] = { "actions.preview_scroll_right", mode = "n" },
 
         -- unbind
         ["<C-h>"] = false,
