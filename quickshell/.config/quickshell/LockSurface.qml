@@ -8,7 +8,6 @@ import Quickshell.Io
 Rectangle {
 	id: root
 	required property LockContext context
-	readonly property ColorGroup colors: Window.active ? palette.active : palette.inactive
 
 	color: "black"
 
