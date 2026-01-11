@@ -1,10 +1,13 @@
 output=DP-1
 default-timeout=5000
 
+font=Mononoki Nerd Font 14
+
 background-color=#2e3436ff
 text-color=#d3d7cfff
-border-color=#3465a4ff
 progress-color=over #4e9a06ff
+border-color=#3465a4ff
+border-radius=8
 
 [urgency=low]
 border-color=#2e3436ff
