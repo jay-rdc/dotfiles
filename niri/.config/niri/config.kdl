@@ -72,6 +72,10 @@ input {
   // focus-follows-mouse
 }
 
+clipboard {
+  disable-primary
+}
+
 // Display
 output "DP-1" {
   focus-at-startup
