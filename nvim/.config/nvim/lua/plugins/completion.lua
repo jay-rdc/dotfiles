@@ -70,10 +70,10 @@ return {
         { name = "buffer" },
       }),
       mapping = {
+        ["<A-j>"] = cmp.mapping.scroll_docs(4),
+        ["<A-k>"] = cmp.mapping.scroll_docs(-4),
         ["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
         ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
-        ["<C-d>"] = cmp.mapping.scroll_docs(4),
-        ["<C-f>"] = cmp.mapping.scroll_docs(-4),
         ["<C-y>"] = cmp.mapping.confirm({ select = false }),
         ["<C-h>"] = cmp.mapping(function(fallback)
           if luasnip.jumpable(-1) then
