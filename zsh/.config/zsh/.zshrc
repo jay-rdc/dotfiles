@@ -149,10 +149,11 @@ typeset -U path
 ### =======PLUGINS======= ###
 
 __zsh_plugin() {
-  local plugin_dir="$ZDOTDIR/plugins/$(basename $1)"
-  local plugin_script="$plugin_dir/$(basename $1).zsh"
+  local plugin_name=$(basename $1)
+  local plugin_dir="$ZDOTDIR/plugins/$plugin_name"
+  local plugin_script="$plugin_dir/$plugin_name.zsh"
 
-  [[ ! -d $plugin_dir ]] && git clone https://github.com/$1.git $plugin_dir
+  [[ ! -d $plugin_dir ]] && git clone --depth 1 https://github.com/$1.git $plugin_dir
   [[ -s $plugin_script ]] && source $plugin_script
 }
 
