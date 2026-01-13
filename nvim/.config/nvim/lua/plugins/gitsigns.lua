@@ -26,6 +26,7 @@ return {
       end, { expr = true, desc = "Gitsigns: Jump to previous hunk" })
 
       map({ "n", "v" }, "<leader>hs", ":Gitsigns stage_hunk<CR>", { desc = "Gitsigns: Stage hunk" })
+      map({ "n", "v" }, "<leader>hS", ":Gitsigns stage_buffer<CR>", { desc = "Gitsigns: Stage buffer" })
       map({ "n", "v" }, "<leader>hr", ":Gitsigns reset_hunk<CR>", { desc = "Gitsigns: Reset hunk" })
       map("n", "<leader>hu", gs.undo_stage_hunk, { desc = "Gitsigns: Undo stage hunk" })
       map("n", "<leader>hp", gs.preview_hunk, { desc = "Gitsigns: Preview hunk" })
