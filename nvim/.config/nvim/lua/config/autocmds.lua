@@ -5,12 +5,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
       return { buffer = args.buf, remap = false, desc = desc or "" }
     end
 
-    local function custom_hover()
-      vim.lsp.buf.hover({
-        border = "rounded"
-      })
-    end
-
     local function get_diagnostic_float_win()
       for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
         local cfg = vim.api.nvim_win_get_config(win)
@@ -39,7 +33,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     -- LSP Actions
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts("LSP: Go to definition"))
-    vim.keymap.set("n", "K", custom_hover, opts("LSP: Hover"))
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts("LSP: Hover"))
     vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action, opts("LSP: Code action"))
     vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts("LSP: Rename"))
     vim.keymap.set({ "n", "v" }, "<leader>=", function()

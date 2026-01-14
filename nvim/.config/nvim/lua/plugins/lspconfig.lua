@@ -22,7 +22,6 @@ return {
       float = {
         focusable = true,
         style = "minimal",
-        border = "rounded",
         source = "always",
         header = "",
         prefix = "",
@@ -32,7 +31,6 @@ return {
     -- Mason Setup
     require("mason").setup({
       ui = {
-        border = "rounded",
         icons = {
           package_installed = "",
           package_pending = "",

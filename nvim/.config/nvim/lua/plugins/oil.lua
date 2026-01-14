@@ -24,12 +24,8 @@ return {
 
     oil.setup({
       view_options = { show_hidden = true },
-      confirmation = { border = "rounded" },
-      progress = { border = "rounded" },
-      keymaps_help = { border = "rounded" },
       preview_win = { preview_method = "load" },
       float = {
-        border = "rounded",
         get_win_title = function(winid)
           local raw_cwd = vim.fn.getcwd()
 

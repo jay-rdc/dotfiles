@@ -48,11 +48,7 @@ return {
         end,
       },
       window = {
-        completion = {
-          border = "rounded"
-        },
         documentation = {
-          border = "rounded",
           max_height = 15,
           max_width = 60,
         },

@@ -30,6 +30,8 @@ vim.opt.splitright = true
 
 vim.opt.colorcolumn = "80"
 
+vim.opt.winborder = "rounded"
+
 local has_wsl = vim.fn.has("wsl") == 1
 local has_tmux = vim.fn.has_key(vim.fn.environ(), "TMUX") == 1
 local has_osc52, osc52 = pcall(require, "vim.ui.clipboard.osc52")
