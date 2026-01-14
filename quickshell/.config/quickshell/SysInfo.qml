@@ -11,9 +11,10 @@ Item {
 
   property string cpuUsage: "0%"
   property string cpuTemp: "0°C"
-  property string memFullString: "0 GiB / 0 GiB (0%)"
   property string gpuUsage: "0%"
   property string gpuTemp: "0°C"
+  property string memUsePct: "0%"
+  property string memUseAmnt: "0 GiB"
   property bool isClipRecording: false
 
   Process {
@@ -33,8 +34,8 @@ Item {
       // [3] GPU temp
       "awk '{printf \"%.1f°C\\n\", $1/1000}' /sys/class/drm/card1/device/hwmon/hwmon*/temp1_input; " +
 
-      // [4, 5, 6] RAM usage (<used GiB>\n<total GiB>\n<usage percentage>)
-      "awk '/MemTotal/ {total=$2} /MemAvailable/ {avail=$2} END {used=total-avail; printf \"%.2f\\n%.2f\\n%.0f%\\n\", used/1024/1024, total/1024/1024, used*100/total}' /proc/meminfo"
+      // [4, 5] RAM usage (<usage %>\n<used GiB>)
+      "awk '/MemTotal/ {total=$2} /MemAvailable/ {avail=$2} END {used=total-avail; printf \"%.0f%\\n%.2f GiB\\n\", used*100/total, used/1024/1024}' /proc/meminfo"
     ]
 
     stdout: StdioCollector {
@@ -47,14 +48,15 @@ Item {
 
         const lines = output.split("\n");
 
-        if (lines.length >= 7) {
+        if (lines.length >= 6) {
           root.cpuUsage = lines[0];
           root.cpuTemp = lines[1];
 
           root.gpuUsage = lines[2] + "%";
           root.gpuTemp = lines[3];
 
-          root.memFullString = `${lines[4]} GiB / ${lines[5]} GiB (${lines[6]})`;
+          root.memUsePct = lines[4];
+          root.memUseAmnt = lines[5];
         }
       }
     }
@@ -114,7 +116,7 @@ Item {
           font.letterSpacing: 1
         }
         Text {
-          text: root.cpuUsage + " " + root.cpuTemp
+          text: `${root.cpuUsage} ${root.cpuTemp}`
           color: "white"
           font.family: Utils.defaultFont
           font.pixelSize: root.statsFontSize
@@ -131,7 +133,7 @@ Item {
           font.letterSpacing: 1
         }
         Text {
-          text: root.gpuUsage + " " + root.gpuTemp
+          text: `${root.gpuUsage} ${root.gpuTemp}`
           color: "white"
           font.family: Utils.defaultFont
           font.pixelSize: root.statsFontSize
@@ -148,7 +150,7 @@ Item {
           font.letterSpacing: 1
         }
         Text {
-          text: root.memFullString
+          text: `${root.memUsePct} ${root.memUseAmnt}`
           color: "white"
           font.family: Utils.defaultFont
           font.pixelSize: root.statsFontSize
