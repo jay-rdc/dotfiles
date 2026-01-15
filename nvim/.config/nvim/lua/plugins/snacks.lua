@@ -27,7 +27,13 @@ return {
 								{ win = "input", height = 1, border = "bottom" },
 								{ win = "list", border = "none" },
 							},
-							{ win = "preview", title = "{preview}", border = true, width = 0.6 },
+							{
+                win = "preview",
+								title = "{preview}",
+								border = true,
+								width = 0.6,
+                wo = { signcolumn = "no", number = false },
+              },
 						},
 					},
 					select = {
