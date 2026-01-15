@@ -17,7 +17,7 @@ return {
 					default = {
 						layout = {
 							box = "horizontal",
-              min_width = 120,
+							min_width = 120,
 							width = 0.8,
 							height = 0.8,
 							{
@@ -42,21 +42,21 @@ return {
 					grep_word = show_previewer,
 					lsp_references = show_previewer,
 				},
-        win = {
-          input = {
-            keys = {
-              ["<Esc>"] = { "close", mode = { "n", "i" } },
-              ["<A-h>"] = { "preview_scroll_left", mode = { "n", "i" } },
-              ["<A-j>"] = { "preview_scroll_down", mode = { "n", "i" } },
-              ["<A-k>"] = { "preview_scroll_up", mode = { "n", "i" } },
-              ["<A-l>"] = { "preview_scroll_right", mode = { "n", "i" } },
+				win = {
+					input = {
+						keys = {
+							["<Esc>"] = { "close", mode = { "n", "i" } },
+							["<A-h>"] = { "preview_scroll_left", mode = { "n", "i" } },
+							["<A-j>"] = { "preview_scroll_down", mode = { "n", "i" } },
+							["<A-k>"] = { "preview_scroll_up", mode = { "n", "i" } },
+							["<A-l>"] = { "preview_scroll_right", mode = { "n", "i" } },
 
-              -- unbind
-              ["<C-d>"] = false,
-              ["<C-u>"] = false,
-            },
-          },
-        },
+							-- unbind
+							["<C-d>"] = false,
+							["<C-u>"] = false,
+						},
+					},
+				},
 			},
 		})
 
