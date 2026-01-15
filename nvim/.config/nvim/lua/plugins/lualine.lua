@@ -13,7 +13,7 @@ return {
           inactive = {
             a = "StatusLineSectionANC",
             b = "StatusLineSectionBNC",
-          }
+          },
         },
         component_separators = "|",
         section_separators = { left = "", right = "" },
@@ -23,7 +23,9 @@ return {
       sections = {
         lualine_a = {
           {
-            function() return " " end,
+            function()
+              return " "
+            end,
             color = "StatusLineActiveIndicator",
             separator = { left = "", right = "" },
             padding = 0,
@@ -58,7 +60,7 @@ return {
               error = " ",
               warn = " ",
               hint = " ",
-              info = " "
+              info = " ",
             },
           },
         },
@@ -94,7 +96,7 @@ return {
               error = " ",
               warn = " ",
               hint = " ",
-              info = " "
+              info = " ",
             },
           },
         },
@@ -104,5 +106,5 @@ return {
         lualine_z = {},
       },
     })
-  end
+  end,
 }

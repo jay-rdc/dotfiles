@@ -59,5 +59,5 @@ return {
     vim.lsp.config("*", {
       capabilities = lsp_capabilities,
     })
-  end
+  end,
 }

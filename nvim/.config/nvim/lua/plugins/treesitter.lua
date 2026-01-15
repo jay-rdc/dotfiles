@@ -2,7 +2,7 @@ return {
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
   config = function()
-    require('nvim-treesitter').install({
+    require("nvim-treesitter").install({
       "bash",
       "css",
       "diff",

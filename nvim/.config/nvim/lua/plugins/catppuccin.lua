@@ -18,10 +18,10 @@ return {
         StatusLineSectionANC = { fg = colors.overlay0, bg = colors.surface0 },
         StatusLineSectionBNC = { fg = colors.overlay0, bg = colors.base },
       }
-    end
+    end,
   },
   config = function(_, opts)
     require("catppuccin").setup(opts)
     vim.cmd.colorscheme("catppuccin")
-  end
+  end,
 }

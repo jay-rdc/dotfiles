@@ -11,14 +11,22 @@ return {
       end
 
       map("n", "]c", function()
-        if vim.wo.diff then return "]c" end
-        vim.schedule(function() gs.nav_hunk("next") end)
+        if vim.wo.diff then
+          return "]c"
+        end
+        vim.schedule(function()
+          gs.nav_hunk("next")
+        end)
         return "<Ignore>"
       end, { expr = true, desc = "Gitsigns: Jump to next hunk" })
 
       map("n", "[c", function()
-        if vim.wo.diff then return "[c" end
-        vim.schedule(function() gs.nav_hunk("prev") end)
+        if vim.wo.diff then
+          return "[c"
+        end
+        vim.schedule(function()
+          gs.nav_hunk("prev")
+        end)
         return "<Ignore>"
       end, { expr = true, desc = "Gitsigns: Jump to previous hunk" })
 
@@ -27,9 +35,11 @@ return {
       map({ "n", "v" }, "<leader>hr", ":Gitsigns reset_hunk<CR>", { desc = "Gitsigns: Reset hunk" })
       map("n", "<leader>hu", gs.undo_stage_hunk, { desc = "Gitsigns: Undo stage hunk" })
       map("n", "<leader>hp", gs.preview_hunk, { desc = "Gitsigns: Preview hunk" })
-      map("n", "<leader>hb", function() gs.blame_line({ full = true }) end, { desc = "Gitsigns: Blame line" })
+      map("n", "<leader>hb", function()
+        gs.blame_line({ full = true })
+      end, { desc = "Gitsigns: Blame line" })
 
       map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "Gitsigns: Select hunk" })
     end,
-  }
+  },
 }

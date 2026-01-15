@@ -39,7 +39,7 @@ return {
           local relative_path = file_path_norm:gsub("^" .. cwd_escaped, "./")
 
           return " " .. relative_path .. " "
-        end
+        end,
       },
       keymaps = {
         ["q"] = { "actions.close", mode = "n" },

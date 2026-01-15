@@ -35,7 +35,7 @@ return {
       Struct = "",
       Event = "",
       Operator = "󰆕",
-      TypeParameter = "󰅲"
+      TypeParameter = "󰅲",
     }
 
     cmp.setup({

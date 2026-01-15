@@ -10,8 +10,8 @@ vim.keymap.set("n", "N", "Nzzzv", { desc = "Go to previous word match then cente
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move highlighted text down one line" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move highlighted text up one line" })
-vim.keymap.set("v", ">", ">gv", { desc = "Indent highlighted text right then reselect"})
-vim.keymap.set("v", "<", "<gv", { desc = "Indent highlighted text left then reselect"})
+vim.keymap.set("v", ">", ">gv", { desc = "Indent highlighted text right then reselect" })
+vim.keymap.set("v", "<", "<gv", { desc = "Indent highlighted text left then reselect" })
 
 vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Paste yanked text without yanking replaced text" })
 vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "Yank line to system clipboard" })
@@ -25,9 +25,19 @@ vim.keymap.set("n", "[b", vim.cmd.bprev, { desc = "Switch to previous buffer" })
 vim.keymap.set("n", "]b", vim.cmd.bnext, { desc = "Switch to next buffer" })
 
 vim.keymap.set("v", "<leader>ga", ":diffget", { desc = "Diff: Wait for buffer input then accept" })
-vim.keymap.set("v", "<leader>gA", [[:g/^<\{7}\|^=\{7}\|^>\{7}/d<CR>]], { desc = "Git merge conflict: Accept both changes" })
+vim.keymap.set(
+  "v",
+  "<leader>gA",
+  [[:g/^<\{7}\|^=\{7}\|^>\{7}/d<CR>]],
+  { desc = "Git merge conflict: Accept both changes" }
+)
 
-vim.keymap.set("n", "<leader>bd", "<cmd>%bd<CR><C-o><cmd>bd#<CR>", { desc = "Delete all buffers excluding the current buffer" })
+vim.keymap.set(
+  "n",
+  "<leader>bd",
+  "<cmd>%bd<CR><C-o><cmd>bd#<CR>",
+  { desc = "Delete all buffers excluding the current buffer" }
+)
 
 vim.keymap.set("i", "<C-c>", "<Esc>")
 vim.keymap.set("n", "Q", "<nop>")
