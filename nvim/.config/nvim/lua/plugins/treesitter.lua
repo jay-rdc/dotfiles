@@ -17,6 +17,7 @@ return {
       "json",
       "lua",
       "markdown",
+      "regex",
       "typescript",
       "vim",
       "vimdoc",

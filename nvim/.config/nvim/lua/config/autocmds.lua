@@ -39,11 +39,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.keymap.set({ "n", "v" }, "<leader>=", function()
       require("conform").format({ lsp_format = "fallback" })
     end, opts("LSP: Format"))
-    vim.keymap.set("n", "<leader>lr", function()
-      if not pcall(require("telescope.builtin").lsp_references) then
-        vim.lsp.buf.references()
-      end
-    end, opts("LSP: References"))
+    vim.keymap.set("n", "<leader>lr", vim.lsp.buf.references, opts("LSP: References"))
     vim.keymap.set("n", "<leader>LR", "<cmd>LspRestart<CR>", opts("LSP: Restart Server"))
 
     -- Diagnostics

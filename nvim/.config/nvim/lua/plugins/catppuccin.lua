@@ -17,9 +17,6 @@ return {
         StatusLineSectionB = { fg = colors.pink, bg = colors.base },
         StatusLineSectionANC = { fg = colors.overlay0, bg = colors.surface0 },
         StatusLineSectionBNC = { fg = colors.overlay0, bg = colors.base },
-        TelescopeMatching = { fg = colors.peach },
-        TelescopeSelection = { fg = colors.text, bold = true },
-        TelescopeResultsNormal = { fg = colors.overlay2 },
       }
     end
   },
