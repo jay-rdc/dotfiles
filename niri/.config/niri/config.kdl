@@ -324,7 +324,7 @@ window-rule {
 }
 
 window-rule {
-  match app-id="^transmission-qt"
+  match app-id="^transmission-qt$"
   open-floating true
   open-on-output "DP-2"
   default-column-width { fixed 800; }
