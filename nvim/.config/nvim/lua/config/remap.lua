@@ -16,7 +16,7 @@ vim.keymap.set("v", "<", "<gv", { desc = "Indent highlighted text left then rese
 vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Paste yanked text without yanking replaced text" })
 vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "Yank line to system clipboard" })
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "Yank text to system clipboard" })
-vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]], { desc = "Delete text without yanking deleted text" })
+vim.keymap.set({ "n", "v" }, "<leader>d", [["+d]], { desc = "Delete text then yank to system clipboard" })
 
 vim.keymap.set("n", "<C-j>", "<cmd>cnext<CR>zz", { desc = "Go to next quickfix list item" })
 vim.keymap.set("n", "<C-k>", "<cmd>cprev<CR>zz", { desc = "Go to previous quickfix list item" })
