@@ -2,6 +2,7 @@ import QtQuick
 import Quickshell
 import Quickshell.Io
 import Quickshell.Widgets
+import Quickshell.Services.Pipewire
 
 Item {
   id: root
@@ -97,6 +98,11 @@ Item {
     onTriggered: clipStatus.running = true
   }
 
+  readonly property bool isMicMuted: Pipewire.defaultAudioSource.audio.muted ?? false
+  PwObjectTracker {
+    objects: [Pipewire.defaultAudioSource]
+  }
+
   MarginWrapperManager {}
 
   Column {
@@ -158,13 +164,24 @@ Item {
       }
     }
 
-    Text {
-      text: `Clips: ${root.isClipRecording ? "ON" : "OFF"}`
+    // icon only statuses
+    Row {
       anchors.horizontalCenter: parent.horizontalCenter
-      color: root.isClipRecording ? "#8ae234" : "#ef2929"
-      font.family: Utils.defaultFont
-      font.pixelSize: 20
-      font.bold: true
+      spacing: 8
+
+      Text {
+        text: root.isClipRecording ? "" : ""
+        color: root.isClipRecording ? "#8ae234" : "#ef2929"
+        font.family: Utils.defaultFont
+        font.pixelSize: 30
+      }
+
+      Text {
+        text: root.isMicMuted ? "" : ""
+        color: root.isMicMuted ? "#ef2929" : "#8ae234"
+        font.family: Utils.defaultFont
+        font.pixelSize: 30
+      }
     }
   }
 }
