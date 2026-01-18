@@ -53,8 +53,8 @@ setopt HIST_FIND_NO_DUPS
 
 autoload -Uz vcs_info
 
-zstyle ':vcs_info:*' enable git
-zstyle ':vcs_info:git*+set-message:*' hooks git-status
+zstyle ":vcs_info:*" enable git
+zstyle ":vcs_info:git*+set-message:*" hooks git-status
 
 local vcs_formats=" on %F{cyan} %b%f%m"
 zstyle ":vcs_info:git:*" formats "${vcs_formats}"
