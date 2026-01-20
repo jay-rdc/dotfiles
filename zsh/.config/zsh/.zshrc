@@ -137,8 +137,8 @@ if [[ -d "$FNM_PATH" ]]; then
   (( $+commands[fnm] )) && eval "$(fnm env --shell zsh)"
 fi
 
-# Rust (cargo binaries)
-[[ -d "$HOME/.cargo/bin" ]] && path=("$HOME/.cargo/bin" $path)
+# rustup shell setup
+[[ -e "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
 
 # fzf zsh integration
 (( $+commands[fzf] )) && eval "$(fzf --zsh)"
