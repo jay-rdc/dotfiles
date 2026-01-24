@@ -103,7 +103,7 @@ fp() {
 tmux_connect() {
   if [[ -z "$TMUX" ]]; then
     tmux has 2> /dev/null
-    [[ $? -eq 1 ]] && tmux new || tmux attach 2> /dev/null
+    [[ $? -eq 1 ]] && tmux new -c $HOME || tmux attach 2> /dev/null
   fi
 }
 
