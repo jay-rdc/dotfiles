@@ -383,7 +383,7 @@ binds {
   Super+C { spawn "chromium"; }
   Super+Shift+C { spawn "chromium" "--incognito"; }
 
-  Super+M repeat=false { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
+  Super+Delete repeat=false { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
 
   Super+Q repeat=false { close-window; }
 
