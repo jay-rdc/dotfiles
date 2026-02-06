@@ -15,7 +15,7 @@ return {
           return "]c"
         end
         vim.schedule(function()
-          gs.nav_hunk("next")
+          gs.nav_hunk("next", { target = "all" })
         end)
         return "<Ignore>"
       end, { expr = true, desc = "Gitsigns: Jump to next hunk" })
@@ -25,7 +25,7 @@ return {
           return "[c"
         end
         vim.schedule(function()
-          gs.nav_hunk("prev")
+          gs.nav_hunk("prev", { target = "all" })
         end)
         return "<Ignore>"
       end, { expr = true, desc = "Gitsigns: Jump to previous hunk" })
