@@ -5,5 +5,7 @@ return {
     vim.keymap.set("n", "<leader>gd", "<cmd>Gvdiffsplit!<CR>", { desc = "Fugitive: Git diff/merge tool" })
     vim.keymap.set("n", "<leader>gl", "<cmd>G log %<CR>", { desc = "Fugitive: Git log of current file" })
     vim.keymap.set("n", "<leader>gL", "<cmd>G log<CR>", { desc = "Fugitive: Git log of repo" })
+    vim.keymap.set("n", "<leader>gb", "<cmd>0GcLog<CR>", { desc = "Fugitive: Git blame current buffer" })
+    vim.keymap.set("v", "<leader>gb", ":GcLog<CR>", { desc = "Fugitive: Git blame selected line/s" })
   end,
 }
