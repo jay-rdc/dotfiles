@@ -125,6 +125,8 @@ bindkey "^[[1~" beginning-of-line
 bindkey "^[[4~" end-of-line
 bindkey "^[[3~" delete-char
 
+[[ -x "$HOME/.local/bin/tmux_sessionizer" ]] && bindkey -s "^[s" "tmux_sessionizer^M"
+
 ### =======MISC======= ###
 
 [[ -d "$HOME/.local/bin" ]] && path=("$HOME/.local/bin" $path)
