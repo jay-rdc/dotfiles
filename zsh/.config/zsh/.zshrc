@@ -155,15 +155,25 @@ bindkey -s "^[s" "tmux_sessionizer^M"
 ### =======PLUGINS======= ###
 
 __zsh_plugin() {
-  local plugin_name=$(basename $1)
+  local plugin_source=$1
+  if [[ -z $plugin_source ]]; then
+    echo 'Error: no plugin source provided' >&2
+    return 1
+  fi
+
+  local plugin_name=$2
+  if [[ -z $plugin_name ]]; then
+    plugin_name=$(basename "$1")
+  fi
+
   local plugin_dir="$ZDOTDIR/plugins/$plugin_name"
   local plugin_script="$plugin_dir/$plugin_name.zsh"
 
-  [[ ! -d $plugin_dir ]] && git clone --depth 1 https://github.com/$1.git $plugin_dir
+  [[ ! -d $plugin_dir ]] && git clone --depth 1 "$1" $plugin_dir
   [[ -s $plugin_script ]] && source $plugin_script
 }
 
-__zsh_plugin zsh-users/zsh-autosuggestions
+__zsh_plugin https://github.com/zsh-users/zsh-autosuggestions
 
 # must be at last line
-__zsh_plugin zsh-users/zsh-syntax-highlighting
+__zsh_plugin https://github.com/zsh-users/zsh-syntax-highlighting
