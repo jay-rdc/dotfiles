@@ -1,24 +1,24 @@
 #!/bin/bash
 
 if ! command -v tmux &> /dev/null; then
-    echo "Error: 'tmux' is not installed."
-    exit 1
+  echo "Error: 'tmux' is not installed."
+  exit 1
 fi
 
 if ! command -v fd &> /dev/null; then
-    echo "Error: 'fd' is not installed."
-    exit 1
+  echo "Error: 'fd' is not installed."
+  exit 1
 fi
 
 if ! command -v fzf &> /dev/null; then
-    echo "Error: 'fzf' is not installed."
-    exit 1
+  echo "Error: 'fzf' is not installed."
+  exit 1
 fi
 
 SELECTED_PATH=$(fd . $HOME -Htd --exclude=".git/" --exclude="node_modules/" | fzf)
 
 if [[ -z "$SELECTED_PATH" ]]; then
-    exit 0
+  exit 0
 fi
 
 # strip trailing slash for setting cwd in tmux
@@ -28,11 +28,11 @@ SELECTED_PATH=${SELECTED_PATH%/}
 SESSION_NAME=$(basename "$SELECTED_PATH" | tr . _)
 
 if ! tmux has-session -t="$SESSION_NAME" 2> /dev/null; then
-    tmux new-session -ds "$SESSION_NAME" -c "$SELECTED_PATH"
+  tmux new-session -ds "$SESSION_NAME" -c "$SELECTED_PATH"
 fi
 
 if [[ -n "$TMUX" ]]; then
-    tmux switch-client -t "$SESSION_NAME"
+  tmux switch-client -t "$SESSION_NAME"
 else
-    tmux attach-session -t "$SESSION_NAME"
+  tmux attach-session -t "$SESSION_NAME"
 fi
