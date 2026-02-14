@@ -125,8 +125,11 @@ fp() {
 
 tmux_connect() {
   if [[ -z "$TMUX" ]]; then
-    tmux has 2> /dev/null
-    [[ $? -eq 1 ]] && tmux new -c $HOME || tmux attach 2> /dev/null
+    tmux has-session 2> /dev/null
+    [[ $? -eq 1 ]] && tmux new-session -c $HOME || tmux attach-session 2> /dev/null
+  else
+    echo "You are already in a tmux session." >&2
+    return 1
   fi
 }
 
