@@ -1,3 +1,7 @@
+### =======ENV PATH======= ###
+
+[[ -d "$HOME/.local/bin" ]] && path=("$HOME/.local/bin" $path)
+
 ### =======HISTORY======= ###
 
 HISTSIZE=10000
@@ -11,6 +15,25 @@ setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_SAVE_NO_DUPS
 setopt HIST_FIND_NO_DUPS
+
+### =======INTEGRATIONS======= ###
+
+# Fast Node Manager (fnm)
+if [[ -d "$FNM_PATH" ]]; then
+  path=("$FNM_PATH" $path)
+
+  # INFO: `(( $+commands[<cmd>] ))` returns true if the command exists
+  (( $+commands[fnm] )) && eval "$(fnm env --shell zsh)"
+fi
+
+# rustup shell setup
+[[ -e "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
+
+# fzf zsh integration
+(( $+commands[fzf] )) && eval "$(fzf --zsh)"
+
+# de-duplicate PATH
+typeset -U path
 
 ### =======PROMPT======= ###
 
@@ -126,27 +149,6 @@ bindkey "^[[4~" end-of-line
 bindkey "^[[3~" delete-char
 
 [[ -x "$HOME/.local/bin/tmux_sessionizer" ]] && bindkey -s "^[s" "tmux_sessionizer^M"
-
-### =======MISC======= ###
-
-[[ -d "$HOME/.local/bin" ]] && path=("$HOME/.local/bin" $path)
-
-# Fast Node Manager (fnm)
-if [[ -d "$FNM_PATH" ]]; then
-  path=("$FNM_PATH" $path)
-
-  # INFO: `(( $+commands[<cmd>] ))` returns true if the command exists
-  (( $+commands[fnm] )) && eval "$(fnm env --shell zsh)"
-fi
-
-# rustup shell setup
-[[ -e "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
-
-# fzf zsh integration
-(( $+commands[fzf] )) && eval "$(fzf --zsh)"
-
-# de-duplicate PATH
-typeset -U path
 
 ### =======PLUGINS======= ###
 
