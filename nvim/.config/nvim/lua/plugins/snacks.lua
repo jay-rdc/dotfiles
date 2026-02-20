@@ -82,7 +82,10 @@ return {
       if snacks.git.get_root() then
         snacks.picker.git_files({ untracked = true })
       else
-        snacks.picker.files({ hidden = true })
+        snacks.picker.files({
+          hidden = true,
+          exclude = { "node_modules/" },
+        })
       end
     end, { desc = "Snacks Picker: Find Files" })
   end,
