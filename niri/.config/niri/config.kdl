@@ -430,7 +430,6 @@ binds {
   Super+Shift+WheelScrollUp { focus-column-left; }
 
   Super+Shift+S { spawn-sh "grim -t ppm -g \"$(slurp -d)\" - | satty -f - --initial-tool=rectangle"; }
-  Super+Alt+S { screenshot-window; }
 
   Print { screenshot-screen; }
   Alt+Print { screenshot-window; }
