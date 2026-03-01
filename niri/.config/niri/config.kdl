@@ -348,6 +348,13 @@ window-rule {
 }
 
 window-rule {
+  match is-floating=true
+  border {
+    active-color "#729fcf99"
+  }
+}
+
+window-rule {
   geometry-corner-radius 6
   clip-to-geometry true
 }
