@@ -41,7 +41,6 @@ return {
 
     require("mason-lspconfig").setup({
       ensure_installed = {
-        "angularls",
         "cssls",
         "emmet_language_server",
         "html",
