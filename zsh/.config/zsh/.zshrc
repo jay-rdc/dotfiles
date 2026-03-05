@@ -118,11 +118,6 @@ alias rmdir="rmdir -v"
 
 mdcd() { mkdir $1 && cd $1 }
 
-fp() {
-  local project_dir=$(fd . $HOME/projects -td | fzf)
-  [[ -n "$project_dir" ]] && cd $project_dir
-}
-
 tmux_connect() {
   if [[ -z "$TMUX" ]]; then
     tmux has-session 2> /dev/null
