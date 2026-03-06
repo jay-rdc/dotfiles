@@ -15,7 +15,7 @@ if ! command -v fzf &> /dev/null; then
   exit 1
 fi
 
-SELECTED_PATH=$(fd . $HOME -Htd --exclude=".git/" --exclude="node_modules/" | fzf)
+SELECTED_PATH=$(fd . $HOME --type=directory --hidden --exclude=".git/" --exclude="node_modules/" | fzf)
 
 if [[ -z "$SELECTED_PATH" ]]; then
   exit 0
