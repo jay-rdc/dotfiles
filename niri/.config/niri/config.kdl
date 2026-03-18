@@ -307,6 +307,8 @@ window-rule {
 
 window-rule {
   match app-id="^vesktop$"
+  match app-id="^discord$"
+
   open-floating true
   open-on-output "DP-2"
   default-column-width { proportion 1.0; }
