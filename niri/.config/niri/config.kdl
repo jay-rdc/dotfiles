@@ -317,7 +317,7 @@ window-rule {
 }
 
 window-rule {
-  match app-id="^spotify$"
+  match app-id="^Spotify$"
   open-floating true
   open-on-output "DP-2"
   default-column-width { proportion 1.0; }
