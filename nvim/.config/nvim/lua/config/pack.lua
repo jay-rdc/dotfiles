@@ -36,6 +36,21 @@ vim.pack.add({
   "https://github.com/mason-org/mason-lspconfig.nvim",
 })
 
+-- Run plugin setup configs located in /lua/config/plugins/
+local plugin_conf_dir = vim.fn.stdpath("config") .. "/lua/config/plugins/*.lua"
+
+local plugin_files = vim.fn.glob(plugin_conf_dir, true, true)
+
+for _, filepath in ipairs(plugin_files) do
+  local module_name = vim.fn.fnamemodify(filepath, ":t:r")
+
+  local ok, err = pcall(require, "config.plugins." .. module_name)
+
+  if not ok then
+    vim.notify("Failed to load config.plugins." .. module_name .. "\n" .. err, vim.log.levels.ERROR)
+  end
+end
+
 -- vim.pack User Commands
 vim.api.nvim_create_user_command("PackUpdate", function(opts)
   if opts.args ~= "" then
@@ -92,18 +107,3 @@ vim.api.nvim_create_user_command("PackCheck", function()
     vim.notify("Cancelled. No plugins were deleted!", vim.log.levels.INFO)
   end
 end, { desc = "List inactive plugins and select to delete" })
-
--- Run plugin setup configs located in /lua/config/plugins/
-local plugin_conf_dir = vim.fn.stdpath("config") .. "/lua/config/plugins/*.lua"
-
-local plugin_files = vim.fn.glob(plugin_conf_dir, true, true)
-
-for _, filepath in ipairs(plugin_files) do
-  local module_name = vim.fn.fnamemodify(filepath, ":t:r")
-
-  local ok, err = pcall(require, "config.plugins." .. module_name)
-
-  if not ok then
-    vim.notify("Failed to load config.plugins." .. module_name .. "\n" .. err, vim.log.levels.ERROR)
-  end
-end
