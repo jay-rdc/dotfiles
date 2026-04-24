@@ -1,4 +1,7 @@
+local augroup = vim.api.nvim_create_augroup("UserConfig", { clear = true })
+
 vim.api.nvim_create_autocmd("BufEnter", {
+  group = augroup,
   callback = function()
     local bufs = vim.api.nvim_list_bufs()
     if #bufs > 1 then
