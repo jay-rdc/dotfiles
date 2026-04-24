@@ -1,4 +1,4 @@
-local augroup = vim.api.nvim_create_augroup("UserConfig", { clear = true })
+local augroup = vim.api.nvim_create_augroup("user-config-group", {})
 
 vim.api.nvim_create_autocmd("BufEnter", {
   group = augroup,
