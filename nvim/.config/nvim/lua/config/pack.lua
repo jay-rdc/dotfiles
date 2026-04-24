@@ -100,7 +100,7 @@ vim.api.nvim_create_user_command("PackCheck", function()
 
   if choice == 1 then
     vim.pack.del(inactive)
-    vim.notify("🗑️  Deleted " .. #inactive .. " inactive plugin(s)", vim.log.levels.INFO)
+    vim.notify("🗑️ Deleted " .. #inactive .. " inactive plugin(s)", vim.log.levels.INFO)
     print("Inactive plugins deleted!")
     vim.api.nvim_exec_autocmds("User", { pattern = "PackChanged" })
   else
