@@ -63,8 +63,11 @@ snacks.setup({
 
 vim.keymap.set("n", "<leader>fc", snacks.picker.lines, { desc = "Snacks Picker: Find in current buffer" })
 vim.keymap.set("n", "<leader>fh", snacks.picker.help, { desc = "Snacks Picker: Find help tags" })
-vim.keymap.set("n", "<leader>fl", snacks.picker.lsp_references, { desc = "Snacks Picker: Find LSP references" })
 vim.keymap.set("n", "<leader>fb", snacks.picker.buffers, { desc = "Snacks Picker: Find buffer" })
+
+vim.keymap.set("n", "<leader>fl", function()
+  snacks.picker.lsp_references({ include_current = true })
+end, { desc = "Snacks Picker: Find LSP references" })
 
 vim.keymap.set("n", "<leader>fw", function()
   snacks.picker.grep({ hidden = true })
