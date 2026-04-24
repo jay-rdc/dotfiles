@@ -70,7 +70,7 @@ vim.api.nvim_create_user_command("PackCheck", function()
 
   vim.print("😴 Non-active plugins :")
   print(" ")
-  -- vim.print(non_active)
+
   for _, name in ipairs(non_active) do
     print(name)
   end
