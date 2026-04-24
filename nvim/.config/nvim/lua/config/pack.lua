@@ -53,7 +53,7 @@ vim.api.nvim_create_user_command("PackDel", function(opts)
 end, { nargs = "+", desc = "Delete plugins (space separated)" })
 
 vim.api.nvim_create_user_command("PackCheck", function()
-  local non_active = vim
+  local inactive = vim
     .iter(vim.pack.get())
     :filter(function(x)
       return not x.active
@@ -63,35 +63,35 @@ vim.api.nvim_create_user_command("PackCheck", function()
     end)
     :totable()
 
-  if #non_active == 0 then
-    vim.notify("🆗 No non-active plugins found!", vim.log.levels.INFO)
+  if #inactive == 0 then
+    vim.notify("🆗 No inactive plugins found!", vim.log.levels.INFO)
     return
   end
 
-  vim.print("😴 Non-active plugins :")
+  vim.print("😴 Inactive plugins :")
   print(" ")
 
-  for _, name in ipairs(non_active) do
+  for _, name in ipairs(inactive) do
     print(name)
   end
 
   print(" ")
 
   local choice = vim.fn.confirm(
-    "Delete ALL non-active plugins from disk?",
+    "Delete ALL inactive plugins from disk?",
     "&Yes\n&No",
     2 -- default = No
   )
 
   if choice == 1 then
-    vim.pack.del(non_active)
-    vim.notify("🗑️  Deleted " .. #non_active .. " non-active plugin(s)", vim.log.levels.INFO)
-    print("Non-active plugins deleted!")
+    vim.pack.del(inactive)
+    vim.notify("🗑️  Deleted " .. #inactive .. " inactive plugin(s)", vim.log.levels.INFO)
+    print("Inactive plugins deleted!")
     vim.api.nvim_exec_autocmds("User", { pattern = "PackChanged" })
   else
     vim.notify("Cancelled. No plugins were deleted!", vim.log.levels.INFO)
   end
-end, { desc = "List non active plugins and select to delete" })
+end, { desc = "List inactive plugins and select to delete" })
 
 -- Run plugin setup configs located in /lua/config/plugins/
 local plugin_conf_dir = vim.fn.stdpath("config") .. "/lua/config/plugins/*.lua"
