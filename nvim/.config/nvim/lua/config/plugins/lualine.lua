@@ -15,7 +15,6 @@ require("lualine").setup({
     component_separators = "|",
     section_separators = { left = "", right = "" },
     refresh = { statusline = 300 },
-    disabled_filetypes = { statusline = { "" } },
   },
   sections = {
     lualine_a = {
