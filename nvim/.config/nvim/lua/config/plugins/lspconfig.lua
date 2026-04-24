@@ -1,0 +1,122 @@
+vim.diagnostic.config({
+  virtual_text = true,
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = "",
+      [vim.diagnostic.severity.WARN] = "",
+      [vim.diagnostic.severity.HINT] = "",
+      [vim.diagnostic.severity.INFO] = "",
+    },
+  },
+  update_in_insert = false,
+  underline = true,
+  severity_sort = true,
+  float = {
+    focusable = true,
+    style = "minimal",
+    source = "always",
+    header = "",
+    prefix = "",
+  },
+})
+
+require("mason").setup({
+  ui = {
+    icons = {
+      package_installed = "",
+      package_pending = "",
+      package_uninstalled = "",
+    },
+  },
+})
+
+vim.keymap.set("n", "<leader>msn", vim.cmd.Mason, { desc = "Mason: Show dashboard" })
+
+require("mason-lspconfig").setup({
+  ensure_installed = {
+    "cssls",
+    "emmet_language_server",
+    "html",
+    "jsonls",
+    "lua_ls",
+    "stylua",
+    "ts_ls",
+  },
+})
+
+local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
+vim.lsp.config("*", {
+  capabilities = lsp_capabilities,
+})
+
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("lsp-on-attach-keymaps", {}),
+  callback = function(args)
+    local function opts(desc)
+      return { buffer = args.buf, remap = false, desc = desc or "" }
+    end
+
+    local function get_diagnostic_float_win()
+      for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+        local cfg = vim.api.nvim_win_get_config(win)
+        if cfg.relative ~= "" and vim.w[win].diagnostic then
+          return win
+        end
+      end
+    end
+
+    local ft = vim.bo[args.buf].filetype
+    local js_ft = {
+      javascript = true,
+      typescript = true,
+      javascriptreact = true,
+      typescriptreact = true,
+    }
+
+    if js_ft[ft] then
+      vim.keymap.set("n", "<leader>EF", function()
+        vim.cmd("normal! mF")
+        vim.cmd("silent! %!eslint_d --stdin --fix-to-stdout --stdin-filename % 2>/dev/null")
+        vim.cmd("normal! `F")
+      end, opts("eslint_d: Fix errors"))
+    end
+
+    -- LSP Actions
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts("LSP: Go to definition"))
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts("LSP: Hover"))
+    vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action, opts("LSP: Code action"))
+    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts("LSP: Rename"))
+    vim.keymap.set({ "n", "v" }, "<leader>=", function()
+      require("conform").format({ lsp_format = "fallback" })
+    end, opts("LSP: Format"))
+    vim.keymap.set("n", "<leader>lr", vim.lsp.buf.references, opts("LSP: References"))
+    vim.keymap.set("n", "<leader>LR", "<cmd>LspRestart<CR>", opts("LSP: Restart Server"))
+
+    -- Diagnostics
+    vim.keymap.set("n", "<leader>dq", vim.diagnostic.setqflist, opts("Diagnostics: Set quickfix list"))
+    vim.keymap.set("n", "[d", function()
+      vim.diagnostic.jump({ count = -1, float = true })
+    end, opts("Diagnostics: Go to previous diagnostic"))
+    vim.keymap.set("n", "[d", function()
+      vim.diagnostic.jump({ count = 1, float = true })
+    end, opts("Diagnostics: Go to next diagnostic"))
+    vim.keymap.set("n", "<leader>df", function()
+      local existing = get_diagnostic_float_win()
+      if existing then
+        vim.api.nvim_set_current_win(existing)
+        return
+      end
+
+      local before = vim.api.nvim_tabpage_list_wins(0)
+      vim.diagnostic.open_float()
+
+      local after = vim.api.nvim_tabpage_list_wins(0)
+      for _, w in ipairs(after) do
+        if not vim.tbl_contains(before, w) then
+          vim.api.nvim_set_current_win(w)
+          return
+        end
+      end
+    end, { desc = "Diagnostics: Open float" })
+  end,
+})

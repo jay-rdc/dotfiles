@@ -1,3 +1,5 @@
 require("config.remap")
 require("config.options")
-require("config.lazy-setup")
+require("config.pack")
+
+require("vim._core.ui2").enable({})
