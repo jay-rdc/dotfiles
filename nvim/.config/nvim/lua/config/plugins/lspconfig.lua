@@ -90,7 +90,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
       require("conform").format({ lsp_format = "fallback" })
     end, opts("LSP: Format"))
     vim.keymap.set("n", "<leader>lr", vim.lsp.buf.references, opts("LSP: References"))
-    vim.keymap.set("n", "<leader>LR", "<cmd>LspRestart<CR>", opts("LSP: Restart Server"))
+    vim.keymap.set("n", "<leader>LR", "<cmd>lsp restart<CR>", opts("LSP: Restart Server"))
 
     -- Diagnostics
     vim.keymap.set("n", "<leader>dq", vim.diagnostic.setqflist, opts("Diagnostics: Set quickfix list"))
