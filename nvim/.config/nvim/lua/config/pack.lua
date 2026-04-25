@@ -61,7 +61,7 @@ vim.api.nvim_create_user_command("PackUpdate", function(opts)
     -- update all
     vim.pack.update()
   end
-end, { desc = "Update all plugins or specific ones", nargs = "*" })
+end, { nargs = "*", desc = "Update all plugins or specific ones" })
 
 vim.api.nvim_create_user_command("PackDelete", function(opts)
   vim.pack.del(opts.fargs)
@@ -106,4 +106,4 @@ vim.api.nvim_create_user_command("PackCheck", function()
   else
     vim.notify("Cancelled. No plugins were deleted!", vim.log.levels.INFO)
   end
-end, { desc = "List inactive plugins and select to delete" })
+end, { desc = "List inactive plugins and choose to delete" })
