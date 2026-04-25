@@ -97,7 +97,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.keymap.set("n", "[d", function()
       vim.diagnostic.jump({ count = -1, float = true })
     end, opts("Diagnostics: Go to previous diagnostic"))
-    vim.keymap.set("n", "[d", function()
+    vim.keymap.set("n", "]d", function()
       vim.diagnostic.jump({ count = 1, float = true })
     end, opts("Diagnostics: Go to next diagnostic"))
     vim.keymap.set("n", "<leader>df", function()
