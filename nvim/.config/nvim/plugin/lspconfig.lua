@@ -86,20 +86,24 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.keymap.set("n", "K", vim.lsp.buf.hover, opts("LSP: Hover"))
     vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action, opts("LSP: Code action"))
     vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts("LSP: Rename"))
-    vim.keymap.set({ "n", "v" }, "<leader>=", function()
-      require("conform").format({ lsp_format = "fallback" })
-    end, opts("LSP: Format"))
     vim.keymap.set("n", "<leader>lr", vim.lsp.buf.references, opts("LSP: References"))
     vim.keymap.set("n", "<leader>LR", "<cmd>lsp restart<CR>", opts("LSP: Restart Server"))
 
+    vim.keymap.set({ "n", "v" }, "<leader>=", function()
+      require("conform").format({ lsp_format = "fallback" })
+    end, opts("LSP: Format"))
+
     -- Diagnostics
     vim.keymap.set("n", "<leader>dq", vim.diagnostic.setqflist, opts("Diagnostics: Set quickfix list"))
+
     vim.keymap.set("n", "[d", function()
       vim.diagnostic.jump({ count = -1, float = true })
     end, opts("Diagnostics: Go to previous diagnostic"))
+
     vim.keymap.set("n", "]d", function()
       vim.diagnostic.jump({ count = 1, float = true })
     end, opts("Diagnostics: Go to next diagnostic"))
+
     vim.keymap.set("n", "<leader>df", function()
       local existing = get_diagnostic_float_win()
       if existing then
