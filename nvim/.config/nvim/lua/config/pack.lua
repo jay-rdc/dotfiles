@@ -63,7 +63,7 @@ vim.api.nvim_create_user_command("PackUpdate", function(opts)
   end
 end, { desc = "Update all plugins or specific ones", nargs = "*" })
 
-vim.api.nvim_create_user_command("PackDel", function(opts)
+vim.api.nvim_create_user_command("PackDelete", function(opts)
   vim.pack.del(opts.fargs)
 end, { nargs = "+", desc = "Delete plugins (space separated)" })
 
