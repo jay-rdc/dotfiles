@@ -10,8 +10,10 @@ require("catppuccin").setup({
       StatusLineActiveIndicator = { fg = colors.pink, bg = colors.pink },
       StatusLineSectionA = { fg = colors.pink, bg = colors.surface0 },
       StatusLineSectionB = { fg = colors.pink, bg = colors.base },
+      StatusLineSectionC = { fg = colors.flamingo },
       StatusLineSectionANC = { fg = colors.overlay0, bg = colors.surface0 },
       StatusLineSectionBNC = { fg = colors.overlay0, bg = colors.base },
+      StatusLineSectionCNC = { fg = colors.overlay0 },
     }
   end,
 })

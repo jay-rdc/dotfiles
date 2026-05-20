@@ -4,12 +4,12 @@ require("lualine").setup({
       normal = {
         a = "StatusLineSectionA",
         b = "StatusLineSectionB",
-
-        c = { bg = "none" },
+        c = "StatusLineSectionC",
       },
       inactive = {
         a = "StatusLineSectionANC",
         b = "StatusLineSectionBNC",
+        c = "StatusLineSectionCNC",
       },
     },
     component_separators = "|",
@@ -60,7 +60,9 @@ require("lualine").setup({
         },
       },
     },
-    lualine_c = {},
+    lualine_c = {
+      "lsp_status",
+    },
     lualine_x = {},
     lualine_y = {},
     lualine_z = {},
@@ -96,7 +98,9 @@ require("lualine").setup({
         },
       },
     },
-    lualine_c = {},
+    lualine_c = {
+      "lsp_status",
+    },
     lualine_x = {},
     lualine_y = {},
     lualine_z = {},
