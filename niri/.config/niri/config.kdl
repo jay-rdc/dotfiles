@@ -318,6 +318,15 @@ window-rule {
 }
 
 window-rule {
+  match app-id="^bg-audio-visualizer$"
+  open-floating true
+  open-on-output "DP-2"
+  default-column-width { proportion 1.0; }
+  default-window-height { fixed 325; }
+  default-floating-position x=0 y=1350 relative-to="bottom-left"
+}
+
+window-rule {
   match app-id="^Spotify$"
   open-floating true
   open-on-output "DP-2"
