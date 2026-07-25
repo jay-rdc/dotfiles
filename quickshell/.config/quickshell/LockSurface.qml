@@ -40,38 +40,6 @@ Rectangle {
       }
 
       Clock { anchors.horizontalCenter: parent.horizontalCenter }
-
-      WrapperItem {
-        anchors.horizontalCenter: parent.horizontalCenter
-        topMargin: 20
-
-        Button {
-          id: offMonitorBtn
-          text: "󰶐  Turn Off Monitors"
-          padding: 10
-          focusPolicy: Qt.NoFocus
-          enabled: !root.context.unlockInProgress
-          onClicked: turnOffMonitors.running = true;
-
-          contentItem: Text {
-            text: offMonitorBtn.text
-            font.family: Utils.defaultFont
-            font.pixelSize: 16
-            color: enabled ? "white" : "gray"
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
-          }
-
-          background: Rectangle {
-            implicitWidth: 100
-            implicitHeight: 40
-            color: "black"
-            border.color: enabled ? "white" : "gray"
-            border.width: 1
-            radius: 4
-          }
-        }
-      }
     }
 
     ColumnLayout {
