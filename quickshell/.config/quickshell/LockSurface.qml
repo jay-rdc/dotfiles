@@ -23,7 +23,7 @@ Rectangle {
   }
 
   Column {
-    visible: Window.active
+    visible: Screen.name === "DP-1"
     spacing: 30
     topPadding: -300
     anchors.centerIn: parent
