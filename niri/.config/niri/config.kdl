@@ -256,7 +256,7 @@ layout {
 // spawn-at-startup "waybar"
 spawn-at-startup "qs"
 spawn-at-startup "steam" "-silent"
-spawn-at-startup "vesktop" "--start-minimized" "--ozone-platform=wayland" "--enable-blink-features=MiddleClickAutoscroll" "--ozone-platform-hint=auto"
+spawn-at-startup "discord" "--start-minimized"
 spawn-at-startup "gsr-ui"
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
@@ -307,7 +307,6 @@ window-rule {
 }
 
 window-rule {
-  match app-id="^vesktop$"
   match app-id="^discord$"
 
   open-floating true
