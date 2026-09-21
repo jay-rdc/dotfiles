@@ -438,6 +438,8 @@ binds {
   Super+Alt+Shift+K { move-column-to-monitor-up; }
   Super+Alt+Shift+L { move-column-to-monitor-right; }
 
+  Super+X { center-column; }
+
   // To avoid scrolling through workspaces really fast, you can use
   // the cooldown-ms property. The bind will be rate-limited to this value.
   // You can set a cooldown on any bind, but it's most useful for the wheel.
@@ -578,8 +580,6 @@ binds {
   // Expand the focused column to space not taken up by other fully visible
   // columns. Makes the column "fill the rest of the space".
   Mod+Ctrl+F { expand-column-to-available-width; }
-
-  // Mod+C { center-column; }
 
   // Center all fully visible columns on screen.
   // Mod+Ctrl+C { center-visible-columns; }
