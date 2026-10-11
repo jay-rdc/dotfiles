@@ -99,7 +99,7 @@ Item {
   }
 
   readonly property bool isMicMuted: Pipewire.defaultAudioSource.audio.muted ?? false
-  readonly property real micVolume: Pipewire.defaultAudioSource.audio.volume ?? 0
+  readonly property real micVolume: Pipewire.defaultAudioSource.audio.volume ?? 0.0
   PwObjectTracker {
     objects: [Pipewire.defaultAudioSource]
   }
