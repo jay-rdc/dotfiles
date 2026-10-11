@@ -99,6 +99,7 @@ Item {
   }
 
   readonly property bool isMicMuted: Pipewire.defaultAudioSource.audio.muted ?? false
+  readonly property real micVolume: Pipewire.defaultAudioSource.audio.volume ?? 0
   PwObjectTracker {
     objects: [Pipewire.defaultAudioSource]
   }
@@ -181,6 +182,14 @@ Item {
         color: root.isMicMuted ? "#ef2929" : "#8ae234"
         font.family: Utils.defaultFont
         font.pixelSize: 30
+      }
+
+      Text {
+        anchors.verticalCenter: parent.verticalCenter
+        text: `${Math.round(root.micVolume * 100)}%`
+        color: root.isMicMuted ? "#ef2929" : "#8ae234"
+        font.family: Utils.defaultFont
+        font.pixelSize: 25
       }
     }
   }
